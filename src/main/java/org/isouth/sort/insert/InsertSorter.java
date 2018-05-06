@@ -8,17 +8,14 @@ public class InsertSorter implements Sorter {
         if (input.length == 1) {
             return input;
         }
-        // 新的有序序列
         for (int i = 1; i < input.length; i++) {
-            for (int j = i; j >= 1; j--) {
-                if (input[j] < input[j - 1]) {
-                    int tmp = input[j-1];
-                    input[j-1] = input[j];
-                    input[j] = tmp;
-                    continue;
-                }
-                break;
+            int key = input[i];
+            int idx = i - 1;
+            while (idx >= 0 && input[idx] > key) {
+                input[idx + 1] = input[idx];
+                idx--;
             }
+            input[idx+1] = key;
         }
         return input;
     }
